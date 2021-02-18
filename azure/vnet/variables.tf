@@ -1,9 +1,9 @@
 variable "location" {
-  type = "string"
+  type = string
   default = "East US"
 }
 
 variable "vnet_name" {
-  type = "string"
-  default = "vnet"
+  type = string
+  default = "coop-vnet"
 }

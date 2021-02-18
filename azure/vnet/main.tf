@@ -4,5 +4,5 @@ terraform {
 
 resource "azurerm_resource_group" "resource_group" {
   name     = "${var.vnet_name}-resource-group"
-  location = "${var.location}"
+  location = var.location
 }
