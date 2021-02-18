@@ -7,15 +7,19 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestTerraformHelloWorldExample(t *testing.T) {
+func TestVnetSetup(t *testing.T) {
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../azure/vnet",
+		Vars: map[string]interface{}{
+			"vnet_name": "terratest-vnet",
+			"location":  "East US",
+		},
 	})
 
 	defer terraform.Destroy(t, terraformOptions)
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	output := terraform.Output(t, terraformOptions, "hello_world")
-	assert.Equal(t, "Hello, World!", output)
+	output := terraform.Output(t, terraformOptions, "resource_group_name")
+	assert.Equal(t, "terratest-vnet-resource-group", output)
 }

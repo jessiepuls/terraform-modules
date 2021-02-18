@@ -2,7 +2,7 @@ terraform {
   required_version = ">= 0.14.0"
 }
 
-# The simplest possible Terraform module: it just outputs "Hello, World!"
-output "hello_world" {
-  value = "Hello, World!"
+resource "azurerm_resource_group" "resource_group" {
+  name     = "${var.vnet_name}-resource-group"
+  location = "${var.location}"
 }
