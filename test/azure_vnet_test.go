@@ -9,7 +9,7 @@ import (
 
 func TestTerraformHelloWorldExample(t *testing.T) {
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: "../",
+		TerraformDir: "../azure/vnet",
 	})
 
 	defer terraform.Destroy(t, terraformOptions)
