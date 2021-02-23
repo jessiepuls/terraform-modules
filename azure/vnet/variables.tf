@@ -5,7 +5,7 @@ variable "location" {
 
 variable "vnet_name" {
   type = string
-  default = "coop-vnet"
+  default = "vnet"
 }
 
 variable "environment" {
