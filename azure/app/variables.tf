@@ -27,3 +27,8 @@ variable "app_settings" {
   type = map
   default = null
 }
+
+variable "site_config" {
+  type = map
+  default = null
+}
