@@ -22,3 +22,8 @@ variable "service_plan_sku" {
     size = "F1"
   }
 }
+
+variable "app_settings" {
+  type = map
+  default = null
+}
