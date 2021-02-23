@@ -29,15 +29,8 @@ resource "azurerm_route_table" "route_table" {
   location            = azurerm_resource_group.resource_group.location
 }
 
-# resource "azurerm_subnet_route_table_association" "example" {
-#   subnet_id      = azurerm_subnet.example.id
-#   route_table_id = azurerm_route_table.example.id
-# }
-
-# resource "azurerm_route" "route" {
-#   name                = "acceptanceTestRoute1"
-#   resource_group_name = azurerm_resource_group.example.name
-#   route_table_name    = azurerm_route_table.example.name
-#   address_prefix      = "10.1.0.0/16"
-#   next_hop_type       = "vnetlocal"
-# }
+resource "azurerm_subnet_route_table_association" "subnet_route_table_associations" {
+  for_each       = azurerm_subnet.coop_subnets
+  subnet_id      = each.value.id
+  route_table_id = azurerm_route_table.route_table.id
+}
