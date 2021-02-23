@@ -7,21 +7,21 @@ resource "azurerm_resource_group" "resource_group" {
   location = var.location
 }
 
-module "vnet" {
-  source              = "Azure/vnet/azurerm"
-  resource_group_name = azurerm_resource_group.resource_group.name
+resource "azurerm_virtual_network" "coop_vnet" {
+  name                = var.vnet_name
   address_space       = var.address_space
-  subnet_prefixes     = values(var.subnets)
-  subnet_names        = keys(var.subnets)
-
-  # route_tables_ids = {
-  #   subnet1 = azurerm_route_table.example.id
-  #   subnet2 = azurerm_route_table.example.id
-  #   subnet3 = azurerm_roiute_table.example.id
-  # }
-
-  tags = var.tags
+  location            = azurerm_resource_group.resource_group.location
+  resource_group_name = azurerm_resource_group.resource_group.name
 }
+
+resource "azurerm_subnet" "coop_subnets" {
+  for_each             = var.subnets
+  name                 = each.key
+  resource_group_name  = azurerm_resource_group.resource_group.name
+  virtual_network_name = azurerm_virtual_network.coop_vnet.name
+  address_prefixes     = [each.value]
+}
+
 
 resource "azurerm_route_table" "route_table" {
   name                = "${var.vnet_name}-route-table"
