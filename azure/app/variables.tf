@@ -14,3 +14,11 @@ variable "app_name" {
   type = string
   default = "app"
 }
+
+variable "service_plan_sku" {
+  type = map
+  default = {
+    tier = "Free",
+    size = "F1"
+  }
+}
