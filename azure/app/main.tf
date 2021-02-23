@@ -27,7 +27,7 @@ resource "azurerm_app_service" "app_service" {
     content {
       always_on                   = lookup(site_config.value, "always_on", null)
       app_command_line            = lookup(site_config.value, "app_command_line", null)
-      default_documents           = lookup(site_config.value, "default_documents", null)
+      default_documents           = local.default_documents
       dotnet_framework_version    = lookup(site_config.value, "dotnet_framework_version", null)
       ftps_state                  = lookup(site_config.value, "ftps_state", null)
       health_check_path           = lookup(site_config.value, "health_check_path", null)
