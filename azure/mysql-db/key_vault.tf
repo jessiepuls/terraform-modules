@@ -23,6 +23,7 @@ resource "azurerm_key_vault" "mysql_key_vault" {
       "set",
       "get",
       "delete",
+      "list"
     ]
 
     storage_permissions = [
