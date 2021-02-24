@@ -16,21 +16,40 @@ resource "azurerm_key_vault" "mysql_key_vault" {
     object_id = data.azurerm_client_config.current.object_id
 
     key_permissions = [
-      "Get",
+      "get",
     ]
 
     secret_permissions = [
-      "Get",
+      "set",
+      "get",
+      "delete",
     ]
 
-    # storage_permissions = [
-    #   "Get",
-    # ]
+    storage_permissions = [
+      "get",
+    ]
+  }
+
+  access_policy {
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azurerm_client_config.current.object_id
+
+    key_permissions = [
+      "get",
+    ]
+
+    secret_permissions = [
+      "get",
+    ]
+
+    storage_permissions = [
+      "get",
+    ]
   }
 }
 
 resource "random_password" "mysql_admin_password" {
-  length = 20
+  length  = 20
   special = true
 }
 

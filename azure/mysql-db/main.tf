@@ -10,7 +10,7 @@ resource "azurerm_mysql_server" "db" {
   version             = var.mysql_version
   sku_name            = var.sku
 
-  administrator_login          = "admin"
+  administrator_login          = "coop-admin"
   administrator_login_password = azurerm_key_vault_secret.mysql_admin_password.value
 
   ssl_enforcement_enabled          = true
